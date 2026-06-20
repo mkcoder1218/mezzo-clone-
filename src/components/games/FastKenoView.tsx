@@ -41,7 +41,7 @@ export default function FastKenoView({
     }
     setFrameError(false);
     setFrameUrl(`${fastKenoUrl}/?${params.toString()}`);
-  }, [authLoading, user?.balance, user?.currency, user?.id]);
+  }, [authLoading, user?.currency, user?.id]);
 
   useEffect(() => {
     const handleMessage = (event: MessageEvent) => {
