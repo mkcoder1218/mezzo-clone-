@@ -23,8 +23,13 @@ export default function FastKenoView({
   const [frameUrl, setFrameUrl] = useState("");
 
   useEffect(() => {
-    if (authLoading || !user?.id) {
+    if (authLoading) {
+      return;
+    }
+
+    if (!user?.id) {
       setFrameUrl("");
+      setFrameError(false);
       return;
     }
 
@@ -40,7 +45,8 @@ export default function FastKenoView({
       params.set("authToken", accessToken);
     }
     setFrameError(false);
-    setFrameUrl(`${fastKenoUrl}/?${params.toString()}`);
+    const nextFrameUrl = `${fastKenoUrl}/?${params.toString()}`;
+    setFrameUrl((current) => (current === nextFrameUrl ? current : nextFrameUrl));
   }, [authLoading, user?.currency, user?.id]);
 
   useEffect(() => {
@@ -61,10 +67,16 @@ export default function FastKenoView({
   return (
     <div className="h-full min-h-0 bg-[#070707] px-0 py-0">
       <div className="mx-auto h-full max-w-full">
-        {!frameUrl ? (
+        {!frameUrl && authLoading ? (
           <div className="flex min-h-[70vh] items-center justify-center border border-white/10 bg-black px-6 text-center">
             <div className="text-sm font-black uppercase tracking-wider text-white/70">
               Loading Fast Keno
+            </div>
+          </div>
+        ) : !frameUrl ? (
+          <div className="flex min-h-[70vh] items-center justify-center border border-white/10 bg-black px-6 text-center">
+            <div className="text-sm font-black uppercase tracking-wider text-white/70">
+              Log in to play Fast Keno
             </div>
           </div>
         ) : frameError ? (
