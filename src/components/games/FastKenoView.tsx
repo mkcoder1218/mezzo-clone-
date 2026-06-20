@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { AlertCircle } from "lucide-react";
 
 const rawFastKenoUrl = (import.meta as any)?.env?.VITE_FAST_KENO_URL
@@ -20,9 +20,14 @@ export default function FastKenoView({
   authLoading?: boolean;
 }) {
   const [frameError, setFrameError] = useState(false);
-  const frameUrlRef = useRef<string>("");
+  const [frameUrl, setFrameUrl] = useState("");
 
-  if (!frameUrlRef.current && !authLoading && user?.id) {
+  useEffect(() => {
+    if (authLoading || !user?.id) {
+      setFrameUrl("");
+      return;
+    }
+
     const accessToken = localStorage.getItem("accessToken") || "";
     const params = new URLSearchParams({
       userId: String(user?.id || ""),
@@ -34,8 +39,9 @@ export default function FastKenoView({
     if (accessToken) {
       params.set("authToken", accessToken);
     }
-    frameUrlRef.current = `${fastKenoUrl}/?${params.toString()}`;
-  }
+    setFrameError(false);
+    setFrameUrl(`${fastKenoUrl}/?${params.toString()}`);
+  }, [authLoading, user?.balance, user?.currency, user?.id]);
 
   useEffect(() => {
     const handleMessage = (event: MessageEvent) => {
@@ -55,7 +61,7 @@ export default function FastKenoView({
   return (
     <div className="h-full min-h-0 bg-[#070707] px-0 py-0">
       <div className="mx-auto h-full max-w-full">
-        {!frameUrlRef.current ? (
+        {!frameUrl ? (
           <div className="flex min-h-[70vh] items-center justify-center border border-white/10 bg-black px-6 text-center">
             <div className="text-sm font-black uppercase tracking-wider text-white/70">
               Loading Fast Keno
@@ -76,7 +82,8 @@ export default function FastKenoView({
         ) : (
           <div className="h-full overflow-hidden border-y border-white/10 bg-black shadow-[0_20px_50px_rgba(0,0,0,0.45)]">
             <iframe
-              src={frameUrlRef.current}
+              src={frameUrl}
+              key={frameUrl}
               title="Fast Keno"
               className="h-full min-h-full w-full border-0 bg-[#050909]"
               onError={() => setFrameError(true)}
