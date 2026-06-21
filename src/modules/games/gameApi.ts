@@ -97,6 +97,7 @@ export async function fetchProviderGames(provider: GameProvider): Promise<LiveGa
 }
 
 const ALL_GAMES_TOP_ORDER: Array<{ names: string[]; providerId?: string }> = [
+  { names: ["fast keno"], providerId: "king5" },
   { names: ["aviator"], providerId: "spribe" },
   { names: ["jetx"], providerId: "smartsoft" },
   { names: ["chicken road 2 0", "chicken road 2"], providerId: "inout" },
