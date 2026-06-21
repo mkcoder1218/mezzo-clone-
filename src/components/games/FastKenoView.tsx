@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AlertCircle } from "lucide-react";
 
 const rawFastKenoUrl = (import.meta as any)?.env?.VITE_FAST_KENO_URL
@@ -21,6 +21,7 @@ export default function FastKenoView({
 }) {
   const [frameError, setFrameError] = useState(false);
   const [frameUrl, setFrameUrl] = useState("");
+  const frameUserIdRef = useRef<string | null>(null);
 
   useEffect(() => {
     if (authLoading) {
@@ -28,14 +29,20 @@ export default function FastKenoView({
     }
 
     if (!user?.id) {
+      frameUserIdRef.current = null;
       setFrameUrl("");
       setFrameError(false);
       return;
     }
 
+    const nextUserId = String(user?.id || "");
+    if (frameUrl && frameUserIdRef.current === nextUserId) {
+      return;
+    }
+
     const accessToken = localStorage.getItem("accessToken") || "";
     const params = new URLSearchParams({
-      userId: String(user?.id || ""),
+      userId: nextUserId,
       balance: String(Number(user?.balance || 0)),
       currency: String(user?.currency || "ETB"),
       embedded: "king5",
@@ -46,8 +53,9 @@ export default function FastKenoView({
     }
     setFrameError(false);
     const nextFrameUrl = `${fastKenoUrl}/?${params.toString()}`;
+    frameUserIdRef.current = nextUserId;
     setFrameUrl((current) => (current === nextFrameUrl ? current : nextFrameUrl));
-  }, [authLoading, user?.currency, user?.id]);
+  }, [authLoading, frameUrl, user?.currency, user?.id]);
 
   useEffect(() => {
     const handleMessage = (event: MessageEvent) => {
@@ -95,7 +103,6 @@ export default function FastKenoView({
           <div className="h-full overflow-hidden border-y border-white/10 bg-black shadow-[0_20px_50px_rgba(0,0,0,0.45)]">
             <iframe
               src={frameUrl}
-              key={frameUrl}
               title="Fast Keno"
               className="h-full min-h-full w-full border-0 bg-[#050909]"
               onError={() => setFrameError(true)}

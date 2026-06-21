@@ -12,6 +12,7 @@ import Navbar from "./components/layout/Navbar";
 import Sidebar from "./components/layout/Sidebar";
 import MobileBottomNav from "./components/layout/MobileBottomNav";
 import Betslip from "./components/betting/Betslip";
+import BettingFilters from "./components/betting/BettingFilters";
 import MatchCard from "./components/betting/MatchCard";
 import MatchDetail from "./components/betting/MatchDetail";
 import AuthModal from "./components/betting/AuthModal";
@@ -56,6 +57,7 @@ export default function App() {
   const [activeApiFootballLeagueId, setActiveApiFootballLeagueId] = useState<string | null>(null);
   const [activeCountry, setActiveCountry] = useState<string | null>(null);
   const [timeFilter, setTimeFilter] = useState<string>('All Time');
+  const [matchSearch, setMatchSearch] = useState<string>("");
   const [fixturesTab, setFixturesTab] = useState<"upcoming" | "top">("top");
   const [isDesktop, setIsDesktop] = useState<boolean>(() => {
     if (typeof window === "undefined") return false;
@@ -499,6 +501,21 @@ export default function App() {
     replacePath("/");
   };
 
+  const clearMatchFilters = () => {
+    setActiveSport(null);
+    setActiveLeague(null);
+    setActiveLeagueId(null);
+    setActiveApiFootballLeagueId(null);
+    setActiveCountry(null);
+    setTimeFilter("All Time");
+    setMatchSearch("");
+    setFixturesTab("top");
+    setSelectedMatchId(null);
+    setView("home");
+    setActiveNavView("home");
+    replacePath("/");
+  };
+
 
   const apifbInfinite = useFixturesInfinite({
     enabled: !!activeProvider && activeProvider !== "mezzo" && activeProvider !== "pissbet_socket",
@@ -660,7 +677,20 @@ export default function App() {
     return ["ft", "finished", "ended", "completed", "final", "closed", "settled", "canceled", "cancelled", "postponed"].includes(status);
   };
 
-  const visibleFixtures = tabSortedFixtures.filter((f) => !isStartedOrCompleted(f));
+  const visibleFixtures = tabSortedFixtures
+    .filter((f) => !isStartedOrCompleted(f))
+    .filter((f) => {
+      const q = matchSearch.trim().toLowerCase();
+      if (!q) return true;
+      return [
+        f?.homeTeam,
+        f?.awayTeam,
+        f?.league,
+        f?.leagueName,
+        f?.country,
+        f?.sportName,
+      ].some((value) => String(value || "").toLowerCase().includes(q));
+    });
   const showFixturesSkeleton =
     fixturesQueryStatus === "pending" ||
     (fixturesQueryIsFetching && visibleFixtures.length === 0) ||
@@ -1015,6 +1045,34 @@ export default function App() {
                   </div>
                 )}
 
+                {!selectedMatchId && (
+                  <BettingFilters
+                    activeProvider={activeProvider}
+                    activeSport={activeSport}
+                    activeLeague={activeLeague}
+                    timeFilter={timeFilter}
+                    searchValue={matchSearch}
+                    onSportChange={(id) => {
+                      setActiveSport(id);
+                      setActiveLeague(null);
+                      setActiveLeagueId(null);
+                      setActiveApiFootballLeagueId(null);
+                      setActiveCountry(null);
+                      if (id) setFixturesTab("upcoming");
+                    }}
+                    onLeagueChange={({ name, id, apiFootballLeagueId, sportId, country }) => {
+                      setActiveLeague(name);
+                      setActiveLeagueId(id);
+                      setActiveApiFootballLeagueId(apiFootballLeagueId);
+                      setActiveCountry(country || null);
+                      if (sportId) setActiveSport(String(sportId));
+                      setFixturesTab("upcoming");
+                    }}
+                    onTimeFilterChange={setTimeFilter}
+                    onSearchChange={setMatchSearch}
+                  />
+                )}
+
                 {/* Match Headers - Sharp Style */}
                 <div className="flex bg-black p-1 gap-1 border-b border-white/5">
                   <button
@@ -1102,7 +1160,7 @@ export default function App() {
                     <div className="p-12 text-center">
                       <div className="text-gray-500 text-[11px] font-black uppercase italic mb-2">No matches found</div>
                       <button 
-                        onClick={() => handleViewChange('home')}
+                        onClick={clearMatchFilters}
                         className="text-brand-primary text-[10px] font-black uppercase italic underline"
                       >
                         Clear Filters
