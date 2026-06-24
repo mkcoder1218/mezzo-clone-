@@ -779,7 +779,7 @@ export default function App() {
 
   return (
     <div className="h-screen overflow-hidden flex flex-col bg-brand-dark">
-      <Header
+      {!isFastKenoView && <Header
         user={user}
         authLoading={authLoading}
         onAuth={handleAuth}
@@ -815,7 +815,7 @@ export default function App() {
           setView("account");
           pushPath("/user/ticket");
         }}
-      />
+      />}
       {view !== "fast-keno" && (
         <>
           <Navbar
