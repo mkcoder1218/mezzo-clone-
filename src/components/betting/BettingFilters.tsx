@@ -180,8 +180,8 @@ export default function BettingFilters({
   };
 
   return (
-    <div className="bg-[#070b14] border-y border-white/10">
-      <div className="flex items-center gap-2 overflow-x-auto no-scrollbar px-3 py-2 border-b border-white/10">
+    <div className="bg-brand-surface border-y border-brand-border">
+      <div className="flex items-center gap-2 overflow-x-auto no-scrollbar px-3 py-2 border-b border-brand-border">
         <button type="button" className="w-8 h-8 rounded-full bg-white/5 border border-white/10 text-white/80 flex items-center justify-center shrink-0">
           <Search className="w-4 h-4" />
         </button>
@@ -204,7 +204,7 @@ export default function BettingFilters({
         })}
       </div>
 
-      <div className="flex items-center gap-2 overflow-x-auto no-scrollbar px-3 py-2 border-b border-white/10">
+      <div className="flex items-center gap-2 overflow-x-auto no-scrollbar px-3 py-2 border-b border-brand-border">
         {["30D", "1H", "3H", "6H", "12H", "Today", "Tomorrow"].map((label) => {
           const value = label === "30D" ? "All Time" : label === "Today" ? "24 Hours" : label === "Tomorrow" ? "3 Days" : label.replace("H", " Hour").replace("1 Hour", "1 Hour").replace("3 Hour", "3 Hours").replace("6 Hour", "6 Hours").replace("12 Hour", "12 Hours");
           const active = timeFilter === value || (label === "30D" && timeFilter === "All Time");
@@ -214,14 +214,14 @@ export default function BettingFilters({
               type="button"
               onClick={() => onTimeFilterChange(value)}
               className={`h-8 px-3 rounded-full text-[12px] font-black shrink-0 transition-colors ${
-                active ? "bg-green-700 text-white" : "bg-[#101827] text-white hover:bg-white/10"
+                active ? "bg-brand-primary text-black" : "bg-brand-muted text-white hover:bg-white/10"
               }`}
             >
               {label}
             </button>
           );
         })}
-        <label className="h-8 px-3 rounded-full bg-[#101827] border border-white/10 flex items-center gap-2 text-white/80 text-[11px] font-bold shrink-0">
+        <label className="h-8 px-3 rounded-full bg-brand-muted border border-brand-line flex items-center gap-2 text-white/80 text-[11px] font-bold shrink-0">
           <span>mm/dd/yyyy</span>
           <CalendarDays className="w-3 h-3" />
           <span>{"->"}</span>
@@ -230,12 +230,12 @@ export default function BettingFilters({
         </label>
       </div>
 
-      <div className="flex items-center gap-2 overflow-x-auto no-scrollbar px-3 py-2 border-b border-white/10">
+      <div className="flex items-center gap-2 overflow-x-auto no-scrollbar px-3 py-2 border-b border-brand-border">
         <button
           type="button"
           onClick={() => onLeagueChange({ name: null, id: null, apiFootballLeagueId: null, sportId: null, country: null })}
           className={`h-8 px-3 rounded-full border text-[12px] font-bold shrink-0 ${
-            !activeLeague ? "bg-green-700/80 text-green-200 border-green-600/60" : "bg-[#101827] text-white border-white/10"
+            !activeLeague ? "bg-brand-primary text-black border-brand-primary" : "bg-brand-muted text-white border-brand-line"
           }`}
         >
           All Leagues
@@ -256,7 +256,7 @@ export default function BettingFilters({
                 })
               }
               className={`h-8 px-3 rounded-full border text-[12px] font-bold flex items-center gap-2 shrink-0 transition-colors ${
-                active ? "bg-brand-primary text-black border-brand-primary" : "bg-[#101827] text-white border-white/10 hover:bg-white/10"
+                active ? "bg-brand-primary text-black border-brand-primary" : "bg-brand-muted text-white border-brand-line hover:bg-white/10"
               }`}
             >
               <span>{league.label || league.name}</span>
@@ -266,14 +266,14 @@ export default function BettingFilters({
       </div>
 
       <div className="px-3 py-3">
-        <div className="h-11 rounded-xl border border-green-900/60 bg-[#080d18] flex items-center px-3 gap-3">
+        <div className="h-11 rounded-xl border border-brand-line bg-brand-dark flex items-center px-3 gap-3">
           <input
             value={search}
             onChange={(e) => setSearchValue(e.target.value)}
             placeholder="Search Match . . ."
             className="flex-1 bg-transparent outline-none text-white placeholder:text-white text-sm"
           />
-          <Search className="w-5 h-5 text-green-700" />
+          <Search className="w-5 h-5 text-brand-primary/75" />
         </div>
       </div>
     </div>

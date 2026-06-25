@@ -844,7 +844,7 @@ export default function App() {
               transition={{ type: "spring", stiffness: 260, damping: 28 }}
               className="fixed left-0 top-0 bottom-0 z-[170] w-[360px] max-w-[92vw] lg:hidden"
             >
-              <div className="h-full bg-[#1e1a2b] border-r border-white/10 shadow-2xl overflow-y-auto no-scrollbar">
+              <div className="h-full bg-brand-dark border-r border-brand-border shadow-2xl overflow-y-auto no-scrollbar">
                 <div className="h-[54px] bg-brand-primary flex items-center justify-between px-4">
                   <button type="button" onClick={() => setMobileMenuOpen(false)} className="text-black/80 hover:text-black">
                     <X className="w-6 h-6" />
@@ -953,7 +953,7 @@ export default function App() {
           ref={(el) => {
             mainScrollRef.current = el;
           }}
-          className={`flex-1 ${selectedMatchId ? "overflow-hidden" : "overflow-y-auto w-full"} ${isGamesView || isVirtualView ? "bg-[#0a0a0a]" : "p-0"} ${isFastKenoView ? "pb-0 lg:pb-0" : "pb-32 lg:pb-10"}`}
+          className={`flex-1 ${selectedMatchId ? "overflow-hidden" : "overflow-y-auto w-full"} ${isGamesView || isVirtualView ? "bg-brand-dark" : "p-0"} ${isFastKenoView ? "pb-0 lg:pb-0" : "pb-32 lg:pb-10"}`}
         >
           {isSportFiltersView ? (
             <div className="p-0 lg:hidden h-full">
@@ -1101,11 +1101,11 @@ export default function App() {
                 <div className="bg-brand-surface rounded-2xl overflow-hidden border border-brand-border shadow-xl">
                   {/* Header Grid (desktop only) */}
                   {selectedMatchId ? (
-                    <div className="hidden lg:flex bg-[#111111] text-[9px] font-black text-gray-500 h-8 px-6 uppercase tracking-widest items-center border-b border-white/5 rounded-t-2xl justify-between">
+                    <div className="hidden lg:flex bg-brand-panel text-[9px] font-black text-gray-500 h-8 px-6 uppercase tracking-widest items-center border-b border-brand-border rounded-t-2xl justify-between">
                       <span className="text-[10px] text-brand-primary">Match List</span>
                     </div>
                   ) : (
-                    <div className="hidden lg:grid bg-[#111111] text-[9px] font-black text-gray-500 h-8 px-6 uppercase tracking-widest items-center border-b border-white/5 rounded-t-2xl grid-cols-[1.5fr_1.5fr_1fr]">
+                    <div className="hidden lg:grid bg-brand-panel text-[9px] font-black text-gray-500 h-8 px-6 uppercase tracking-widest items-center border-b border-brand-border rounded-t-2xl grid-cols-[1.5fr_1.5fr_1fr]">
                       <div className="text-left font-bold opacity-80 border-r border-white/50 h-full flex items-center">
                         Match Result
                       </div>
@@ -1232,11 +1232,11 @@ export default function App() {
               setIsBetslipOpen(true);
               pushPath("/betslip");
             }}
-            className="w-16 h-16 bg-brand-yellow text-black rounded-full shadow-[0_10px_30px_rgba(250,204,21,0.4)] flex flex-col items-center justify-center border-4 border-brand-dark active:scale-90 transition-all group"
+            className="w-16 h-16 bg-brand-primary text-black rounded-full shadow-[0_10px_30px_rgba(189,233,30,0.24)] flex flex-col items-center justify-center border-4 border-brand-dark active:scale-90 transition-all group"
           >
             <div className="relative">
               <Smartphone className="w-6 h-6" />
-              <div className="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] font-black w-5 h-5 rounded-full flex items-center justify-center border-2 border-brand-dark">
+              <div className="absolute -top-2 -right-2 bg-brand-danger text-white text-[10px] font-black w-5 h-5 rounded-full flex items-center justify-center border-2 border-brand-dark">
                 {selectedBets.length}
               </div>
             </div>

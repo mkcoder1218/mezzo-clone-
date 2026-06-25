@@ -236,7 +236,7 @@ export default function MatchCard({
         className={`relative flex items-center justify-between px-2 h-8 flex-1 text-[10px] font-bold rounded-lg transition-all border shadow-[inset_0_1px_0_rgba(255,255,255,0.04),0_1px_2px_rgba(0,0,0,0.28)] ${
           isBetSelected(market, sel)
             ? "bg-brand-primary text-black border-brand-primary shadow-lg shadow-brand-primary/20 scale-[1.01]"
-            : "bg-[#171717] text-gray-300 border-white/10 hover:bg-[#1f1f1f] hover:border-brand-primary/35 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.06),0_0_0_1px_rgba(204,255,0,0.06)]"
+            : "bg-brand-panel text-gray-300 border-brand-line hover:bg-brand-muted hover:border-brand-primary/35 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.06),0_0_0_1px_rgba(189,233,30,0.06)]"
         } ${(blocked || !hasOdd) ? "opacity-60 hover:bg-transparent" : "active:scale-95"}`}
       >
         <span
@@ -261,7 +261,7 @@ export default function MatchCard({
     <>
       {/* Mobile Card Layout */}
       <div
-        className={`lg:hidden flex flex-col bg-[#101010] border rounded-xl p-3 mb-2 gap-3 cursor-pointer active:scale-[0.99] transition-all relative overflow-hidden shadow-[inset_0_1px_0_rgba(255,255,255,0.035),0_5px_14px_rgba(0,0,0,0.2)] ${
+        className={`lg:hidden flex flex-col bg-brand-surface border rounded-xl p-3 mb-2 gap-3 cursor-pointer active:scale-[0.99] transition-all relative overflow-hidden shadow-[inset_0_1px_0_rgba(255,255,255,0.035),0_5px_14px_rgba(0,0,0,0.2)] ${
           isSelected ? "border-brand-primary/45 shadow-lg shadow-brand-primary/8" : "border-white/10 hover:border-white/18"
         }`}
         onClick={() => onClick(match.id)}
@@ -358,7 +358,7 @@ export default function MatchCard({
 
       {/* Desktop Card Layout */}
       <div
-        className={`hidden lg:flex flex-col border border-white/10 rounded-lg mb-2 bg-[#0f0f0f] hover:bg-[#141414] hover:border-white/18 transition-all cursor-pointer group/card px-4 relative overflow-hidden shadow-[inset_0_1px_0_rgba(255,255,255,0.03),0_6px_18px_rgba(0,0,0,0.16)] ${
+        className={`hidden lg:flex flex-col border border-brand-border rounded-lg mb-2 bg-brand-surface hover:bg-brand-panel hover:border-brand-line transition-all cursor-pointer group/card px-4 relative overflow-hidden shadow-[inset_0_1px_0_rgba(255,255,255,0.03),0_6px_18px_rgba(0,0,0,0.16)] ${
           isSelected
             ? "bg-brand-primary/[0.04] border-brand-primary/45 border-l-4 border-l-brand-primary"
             : "border-l-4 border-l-white/10"

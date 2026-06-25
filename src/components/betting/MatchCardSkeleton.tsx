@@ -6,7 +6,7 @@ export default function MatchCardSkeleton({ isCompact = false }: { isCompact?: b
   return (
     <>
       {/* Mobile skeleton */}
-      <div className="lg:hidden flex flex-col bg-[#1e1a2b] border border-white/5 rounded-xl p-1 px-4 mb-2 gap-2">
+      <div className="lg:hidden flex flex-col bg-brand-surface border border-brand-border rounded-xl p-1 px-4 mb-2 gap-2">
         <div className="flex justify-between items-start">
           <div className="flex flex-col gap-1.5">
             <div className="skeleton h-3.5 w-32" />
