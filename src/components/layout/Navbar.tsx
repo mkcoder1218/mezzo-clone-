@@ -64,7 +64,7 @@ export default function Navbar({ currentView, onViewChange }: NavbarProps) {
   }, []);
 
   return (
-    <nav className="bg-[#0b0b0b] border-b border-white/10 h-[56px] lg:h-[72px] flex items-center justify-start lg:justify-center shrink-0 sticky top-[70px] lg:top-[50px] z-[90] overflow-x-auto no-scrollbar shadow-[0_15px_40px_rgba(0,0,0,0.9)] mb-1">
+    <nav className="bg-brand-dark border-b border-brand-border h-[56px] lg:h-[72px] flex items-center justify-start lg:justify-center shrink-0 sticky top-[70px] lg:top-[50px] z-[90] overflow-x-auto no-scrollbar shadow-[0_15px_40px_rgba(0,0,0,0.9)] mb-1">
       <div className="flex w-auto lg:gap-1 px-2 lg:px-4 min-w-max justify-start h-full">
         {NAV_ITEMS.map((item) => {
           const isActive = currentView === item.view;
@@ -89,14 +89,14 @@ export default function Navbar({ currentView, onViewChange }: NavbarProps) {
                 }
               }}
               className={`flex-none min-w-[60px] sm:min-w-[75px] lg:min-w-0 flex flex-col items-center justify-center cursor-pointer group px-2 sm:px-3 lg:px-5 relative h-full transition-all duration-300 ${
-                isActive 
-                  ? "text-brand-primary bg-white/[0.04]" 
-                  : "text-zinc-500 hover:text-zinc-200 hover:bg-white/[0.01]"
+                  isActive 
+                  ? "text-brand-primary bg-brand-primary/[0.07]" 
+                  : "text-zinc-500 hover:text-zinc-200 hover:bg-white/[0.02]"
               }`}
             >
               <div
                 className={`mb-1 transition-all duration-500 ${
-                  isActive ? "scale-110 drop-shadow-[0_0_12px_rgba(193,223,31,0.6)]" : "group-hover:scale-105"
+                  isActive ? "scale-110 drop-shadow-[0_0_12px_rgba(189,233,30,0.5)]" : "group-hover:scale-105"
                 }`}
               >
                 <div className="w-5 h-5 flex items-center justify-center">
@@ -114,16 +114,16 @@ export default function Navbar({ currentView, onViewChange }: NavbarProps) {
               {/* Premium Active Indicator */}
               {isActive && (
                 <>
-                  <div className="absolute bottom-0 h-[3px] w-full bg-brand-primary shadow-[0_-2px_12px_rgba(193,223,31,0.7)] animate-in fade-in slide-in-from-bottom-1" />
+                  <div className="absolute bottom-0 h-[3px] w-full bg-brand-primary shadow-[0_-2px_12px_rgba(189,233,30,0.55)] animate-in fade-in slide-in-from-bottom-1" />
                   <div className="absolute inset-0 bg-gradient-to-t from-brand-primary/5 to-transparent pointer-events-none" />
                 </>
               )}
 
               {/* Sport Dropdown */}
               {isSport && isDesktop && isSportDropdownOpen && (
-                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1 w-64 bg-[#141414] border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] rounded-md py-5 z-50 animate-in fade-in zoom-in-95 origin-top backdrop-blur-xl">
+                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1 w-64 bg-brand-panel border border-brand-border shadow-[0_20px_50px_rgba(0,0,0,0.5)] rounded-md py-5 z-50 animate-in fade-in zoom-in-95 origin-top backdrop-blur-xl">
                   <div className="flex flex-col items-center mb-5 px-6">
-                    <div className="w-12 h-12 rounded-full border border-brand-primary/30 bg-brand-primary/5 flex items-center justify-center mb-3 shadow-[inset_0_0_15px_rgba(193,223,31,0.1)]">
+                    <div className="w-12 h-12 rounded-full border border-brand-primary/30 bg-brand-primary/5 flex items-center justify-center mb-3 shadow-[inset_0_0_15px_rgba(189,233,30,0.1)]">
                       <Timer className="w-6 h-6 text-brand-primary" />
                     </div>
                     <span className="text-brand-primary text-[12px] font-black tracking-[0.2em] italic uppercase">
@@ -146,7 +146,7 @@ export default function Navbar({ currentView, onViewChange }: NavbarProps) {
                         <span className="text-white/80 font-bold text-[13px] uppercase italic tracking-tight group-hover/item:text-brand-primary group-hover/item:translate-x-1 transition-all">
                           {link}
                         </span>
-                        <div className="w-1.5 h-1.5 rounded-full bg-brand-primary opacity-0 group-hover/item:opacity-100 transition-opacity shadow-[0_0_8px_rgba(193,223,31,0.8)]" />
+                        <div className="w-1.5 h-1.5 rounded-full bg-brand-primary opacity-0 group-hover/item:opacity-100 transition-opacity shadow-[0_0_8px_rgba(189,233,30,0.7)]" />
                       </button>
                     ))}
                   </div>

@@ -99,7 +99,7 @@ export default function Header({
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 12, scale: 0.96 }}
             transition={{ duration: 0.14 }}
-            className={`${compact ? "w-56" : "w-64"} absolute right-0 mt-3 bg-[#0f0e13]/98 backdrop-blur-2xl rounded-xl shadow-2xl border border-white/10 overflow-hidden py-1 z-[200]`}
+            className={`${compact ? "w-56" : "w-64"} absolute right-0 mt-3 bg-brand-panel/98 backdrop-blur-2xl rounded-xl shadow-2xl border border-brand-border overflow-hidden py-1 z-[200]`}
             role="menu"
           >
             <div className="px-4 py-3 border-b border-white/5">
@@ -144,10 +144,10 @@ export default function Header({
 
   return (
     <div className="sticky top-0 z-[220] px-3 py-2 pointer-events-none">
-      <header className="pointer-events-auto h-[54px] bg-[#121117]/85 backdrop-blur-xl flex items-center px-4 sm:px-6 rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.5)] border border-white/5 relative">
+      <header className="pointer-events-auto h-[54px] bg-brand-panel/90 backdrop-blur-xl flex items-center px-4 sm:px-6 rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.5)] border border-brand-border relative">
         {/* Neon Glow Bottom Bar */}
         <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-brand-primary/50 blur-[1.5px]" />
-        <div className="absolute bottom-0 left-[10%] right-[10%] h-[1px] bg-brand-primary shadow-[0_0_20px_#c1df1f]" />
+        <div className="absolute bottom-0 left-[10%] right-[10%] h-[1px] bg-brand-primary shadow-[0_0_20px_rgba(189,233,30,0.65)]" />
 
         {/* Mobile View */}
         {/* Mobile View */}
@@ -184,7 +184,7 @@ export default function Header({
                 <div className="flex items-center gap-1 px-1 border-x border-white/5 mx-0.5">
                   <button className="relative w-8 h-8 rounded-lg flex items-center justify-center active:bg-white/5 transition-colors">
                     <Mail className="w-4 h-4 text-white/30" />
-                    <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-rose-500 rounded-full border border-[#121117]" />
+                    <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-brand-danger rounded-full border border-brand-panel" />
                   </button>
 
                   {renderProfileDropdown(mobileDropdownRef, true)}
@@ -254,7 +254,7 @@ export default function Header({
                 {/* Notifications */}
                 <button className="relative w-9 h-9 rounded-lg flex items-center justify-center hover:bg-white/5 transition-colors">
                   <Mail className="w-4 h-4 text-white/40" />
-                  <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-rose-500 rounded-full" />
+                  <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-brand-danger rounded-full" />
                 </button>
 
                 {renderProfileDropdown(desktopDropdownRef)}

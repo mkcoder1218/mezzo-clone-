@@ -316,11 +316,11 @@ export default function Betslip({
               animate={{ y: 0, opacity: 1, scale: 1 }}
               exit={{ y: 10, opacity: 0, scale: 0.98 }}
               transition={{ type: "spring", damping: 22, stiffness: 220 }}
-              className="w-full max-w-sm bg-[#0a0a0a] border border-red-500/30 rounded-xl p-4"
+              className="w-full max-w-sm bg-brand-surface border border-brand-danger/30 rounded-xl p-4"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex items-center justify-between">
-                <div className="text-xs font-black uppercase italic tracking-widest text-red-400">
+                <div className="text-xs font-black uppercase italic tracking-widest text-brand-danger">
                   Error
                 </div>
                 <button
@@ -331,14 +331,14 @@ export default function Betslip({
                   <X className="w-5 h-5 stroke-[3]" />
                 </button>
               </div>
-              <div className="mt-3 text-sm font-bold text-red-400">
+              <div className="mt-3 text-sm font-bold text-brand-danger">
                 Insufficient balance. Please deposit to place this bet.
               </div>
               <div className="mt-4 flex justify-end">
                 <button
                   type="button"
                   onClick={() => setBalanceModalOpen(false)}
-                  className="bg-red-500 text-black px-4 py-2 rounded-lg text-xs font-black uppercase italic"
+                  className="bg-brand-danger text-black px-4 py-2 rounded-lg text-xs font-black uppercase italic"
                 >
                   OK
                 </button>
@@ -368,7 +368,7 @@ export default function Betslip({
           opacity: 1,
         }}
         transition={{ type: "spring", damping: 25, stiffness: 200 }}
-        className="fixed inset-x-0 bottom-0 lg:sticky lg:top-0 lg:translate-y-0 w-full lg:w-[380px] bg-[#0a0a0a] flex flex-col shrink-0 border-t lg:border-t-0 lg:border-l border-white/5 z-[150] lg:z-10 h-[90vh] lg:h-full rounded-t-3xl lg:rounded-none overflow-hidden shadow-2xl lg:shadow-none min-h-0"
+        className="fixed inset-x-0 bottom-0 lg:sticky lg:top-0 lg:translate-y-0 w-full lg:w-[380px] bg-brand-dark flex flex-col shrink-0 border-t lg:border-t-0 lg:border-l border-brand-border z-[150] lg:z-10 h-[90vh] lg:h-full rounded-t-3xl lg:rounded-none overflow-hidden shadow-2xl lg:shadow-none min-h-0"
       >
         {/* Mobile Pull Handle */}
         <div className="lg:hidden flex justify-center py-3" onClick={onClose}>
@@ -376,7 +376,7 @@ export default function Betslip({
         </div>
 
         {/* Header Tabs */}
-        <div className="px-5 py-3 flex items-center justify-between border-b border-white/5 bg-[#0d0d0d]">
+        <div className="px-5 py-3 flex items-center justify-between border-b border-brand-border bg-brand-surface">
           <div className="flex gap-2 p-1 bg-white/[0.03] rounded-full border border-white/5">
             {([1, 2, 3] as const).map((slot) => {
               const isActive = activeSlot === slot;
@@ -404,7 +404,7 @@ export default function Betslip({
           <div className="flex items-center gap-1">
             <button
               onClick={onClear}
-              className="p-2 text-gray-500 hover:text-red-500 transition-colors rounded-lg hover:bg-white/5"
+              className="p-2 text-gray-500 hover:text-brand-danger transition-colors rounded-lg hover:bg-white/5"
               title="Clear all bets"
             >
               <Trash2 className="w-4 h-4" />
@@ -419,7 +419,7 @@ export default function Betslip({
         </div>
 
         {/* Control Row */}
-        <div className="px-4 py-3 flex items-center justify-between border-b border-white/5 bg-black/20">
+        <div className="px-4 py-3 flex items-center justify-between border-b border-brand-border bg-brand-panel/45">
           <button className="flex items-center gap-2 group">
             <div className="w-8 h-4 bg-white/10 rounded-full relative transition-colors group-hover:bg-white/20">
               <div className="absolute right-0.5 top-0.5 w-3 h-3 bg-brand-primary rounded-full shadow-sm" />
@@ -440,17 +440,17 @@ export default function Betslip({
 
         {/* Inline error */}
         {inlineError ? (
-          <div className="px-4 py-2 bg-red-500/10 border-b border-red-500/20">
-            <div className="text-[11px] font-bold text-red-400 flex items-center gap-2">
-              <div className="w-1 h-1 rounded-full bg-red-400" />
+          <div className="px-4 py-2 bg-brand-danger/10 border-b border-brand-danger/20">
+            <div className="text-[11px] font-bold text-brand-danger flex items-center gap-2">
+              <div className="w-1 h-1 rounded-full bg-brand-danger" />
               {inlineError}
             </div>
           </div>
         ) : null}
         {localNotice ? (
-          <div className="px-4 py-2 bg-emerald-500/10 border-b border-emerald-500/20">
-            <div className="text-[11px] font-bold text-emerald-400 flex items-center gap-2">
-              <div className="w-1 h-1 rounded-full bg-emerald-400" />
+          <div className="px-4 py-2 bg-brand-success/10 border-b border-brand-success/20">
+            <div className="text-[11px] font-bold text-brand-success flex items-center gap-2">
+              <div className="w-1 h-1 rounded-full bg-brand-success" />
               {localNotice}
             </div>
           </div>
@@ -481,7 +481,7 @@ export default function Betslip({
                   }}
                   className={`p-3 relative group border-l-4 shadow-xl transition-colors ${
                     isClosed
-                      ? "bg-red-500/15 border-l-red-500 border border-red-500/30"
+                      ? "bg-brand-danger/15 border-l-brand-danger border border-brand-danger/30"
                       : "bg-white border-l-brand-primary"
                   }`}
                 >
@@ -506,7 +506,7 @@ export default function Betslip({
                         </span>
                       </div>
                       {isClosed ? (
-                        <div className="mt-2 inline-flex items-center rounded-sm bg-red-500 px-2 py-0.5 text-[8px] font-black uppercase italic tracking-widest text-black">
+                        <div className="mt-2 inline-flex items-center rounded-sm bg-brand-danger px-2 py-0.5 text-[8px] font-black uppercase italic tracking-widest text-black">
                           Closed
                         </div>
                       ) : null}
@@ -518,14 +518,14 @@ export default function Betslip({
                           onClick={() =>
                             onRemoveBet(bet.matchId, bet.market, bet.selection)
                           }
-                          className="w-6 h-6 rounded-full bg-red-500 text-black hover:bg-red-400 transition-colors flex items-center justify-center"
+                          className="w-6 h-6 rounded-full bg-brand-danger text-black hover:brightness-110 transition-colors flex items-center justify-center"
                           title="Remove closed bet"
                         >
                           <X className="w-3.5 h-3.5 stroke-[4]" />
                         </button>
                       ) : null}
                       <div className={`px-2 py-0.5 rounded-sm text-[11px] font-black italic ${
-                        isClosed ? "bg-red-500 text-black" : "bg-black text-white"
+                        isClosed ? "bg-brand-danger text-black" : "bg-black text-white"
                       }`}>
                         {bet.odd.toFixed(2)}
                       </div>
@@ -545,7 +545,7 @@ export default function Betslip({
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 20 }}
-              className="p-4 pb-12 lg:pb-6 bg-[#0d0d0d] border-t border-white/5 space-y-4 shadow-2xl relative z-10"
+              className="p-4 pb-12 lg:pb-6 bg-brand-surface border-t border-brand-border space-y-4 shadow-2xl relative z-10"
             >
               {/* Summary Row */}
               <div className="flex items-center justify-between px-1">
@@ -606,9 +606,9 @@ export default function Betslip({
                 <div className="flex justify-between items-center text-[9px] font-bold">
                   <div className="flex items-center gap-1.5">
                     <span className="text-gray-500 uppercase tracking-tight">Income Tax</span>
-                    <span className="text-[7px] bg-red-500/10 text-red-500 px-1 py-0.5 rounded-sm border border-red-500/10">15%</span>
+                    <span className="text-[7px] bg-brand-danger/10 text-brand-danger px-1 py-0.5 rounded-sm border border-brand-danger/10">15%</span>
                   </div>
-                  <span className="text-red-500/60">-{incomeTax.toFixed(2)} ETB</span>
+                  <span className="text-brand-danger/70">-{incomeTax.toFixed(2)} ETB</span>
                 </div>
 
                 <div className="h-px bg-white/5 my-1" />
@@ -616,7 +616,7 @@ export default function Betslip({
                 <div className="flex justify-between items-end">
                   <span className="text-[8px] font-black text-gray-500 uppercase tracking-widest mb-0.5">Net Win</span>
                   <div className="flex items-baseline gap-1 leading-none">
-                    <span className="text-xl font-black text-brand-primary italic tracking-tighter tabular-nums drop-shadow-[0_0_8px_rgba(193,223,31,0.2)]">
+                    <span className="text-xl font-black text-brand-primary italic tracking-tighter tabular-nums drop-shadow-[0_0_8px_rgba(189,233,30,0.2)]">
                       {netWin.toLocaleString(undefined, { minimumFractionDigits: 2 })}
                     </span>
                     <span className="text-[8px] font-black text-brand-primary italic uppercase">ETB</span>
@@ -629,7 +629,7 @@ export default function Betslip({
                 <button
                   onClick={handlePlaceOnline}
                   disabled={busy || (!isAuthenticated && authLoading)}
-                  className="w-full bg-brand-primary text-black font-black py-4 rounded-sm text-[13px] uppercase tracking-wider hover:bg-brand-primary/90 active:scale-[0.98] transition-all shadow-[0_10px_30px_rgba(193,223,31,0.2)] disabled:opacity-50 relative overflow-hidden group"
+                  className="w-full bg-brand-primary text-black font-black py-4 rounded-sm text-[13px] uppercase tracking-wider hover:bg-brand-primary/90 active:scale-[0.98] transition-all shadow-[0_10px_30px_rgba(189,233,30,0.2)] disabled:opacity-50 relative overflow-hidden group"
                 >
                   <span className="relative z-10">{busy ? "Placing..." : "Place Bet Online"}</span>
                   <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 skew-x-[45deg]" />

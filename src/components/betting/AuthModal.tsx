@@ -14,7 +14,7 @@ interface AuthModalProps {
 const CustomSwitch = ({ checked, onChange }: { checked: boolean; onChange: () => void }) => (
   <div 
     onClick={onChange}
-    className={`w-12 h-6 rounded-full relative transition-colors cursor-pointer ${checked ? 'bg-[#7CBB3D]' : 'bg-[#4B4B4B]'}`}
+    className={`w-12 h-6 rounded-full relative transition-colors cursor-pointer ${checked ? 'bg-brand-primary' : 'bg-brand-line'}`}
   >
     <div className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-all ${checked ? 'left-7' : 'left-1'}`} />
   </div>
@@ -76,7 +76,7 @@ export default function AuthModal({ isOpen, onClose, type, onSwitch, onSuccess }
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            className="bg-[#111111] w-full max-w-md overflow-hidden relative z-10 border border-white/10 rounded-2xl shadow-[0_0_50px_rgba(0,0,0,0.5)]"
+            className="bg-brand-surface w-full max-w-md overflow-hidden relative z-10 border border-brand-border rounded-2xl shadow-[0_0_50px_rgba(0,0,0,0.5)]"
           >
             {/* Scanline Effect */}
             <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-[length:100%_4px,3px_100%] z-50 opacity-[0.03]" />
@@ -84,7 +84,7 @@ export default function AuthModal({ isOpen, onClose, type, onSwitch, onSuccess }
             <div className="p-8">
               <div className="flex justify-between items-center mb-8">
                 <div className="flex items-center gap-3">
-                   <div className="w-10 h-10 rounded-xl bg-[#7CBB3D] flex items-center justify-center shadow-[0_0_15px_rgba(124,187,61,0.3)]">
+                   <div className="w-10 h-10 rounded-xl bg-brand-primary flex items-center justify-center shadow-[0_0_15px_rgba(189,233,30,0.25)]">
                       <Shield className="text-black w-5 h-5" />
                    </div>
                    <h2 className="text-white font-black text-xl uppercase tracking-tighter italic">
@@ -101,7 +101,7 @@ export default function AuthModal({ isOpen, onClose, type, onSwitch, onSuccess }
                   <div>
                     <label className="block text-zinc-500 text-[10px] font-black uppercase tracking-widest mb-2 pl-1">Phone number (Ethiopia)</label>
                     <div className="flex gap-2">
-                      <div className="bg-black border border-zinc-800 px-4 py-3 text-[#7CBB3D] font-black rounded-xl min-w-[70px] text-center text-sm shadow-inner">
+                      <div className="bg-black border border-brand-border px-4 py-3 text-brand-primary font-black rounded-xl min-w-[70px] text-center text-sm shadow-inner">
                         +251
                       </div>
                       <div className="relative flex-1">
@@ -109,7 +109,7 @@ export default function AuthModal({ isOpen, onClose, type, onSwitch, onSuccess }
                         <input 
                           type="tel" 
                           placeholder="911234567"
-                          className="w-full bg-black border border-zinc-800 px-12 py-3 text-white focus:outline-none focus:border-[#7CBB3D] placeholder:text-zinc-700 font-bold rounded-xl transition-all shadow-inner text-sm"
+                          className="w-full bg-black border border-brand-border px-12 py-3 text-white focus:outline-none focus:border-brand-primary placeholder:text-zinc-700 font-bold rounded-xl transition-all shadow-inner text-sm"
                           value={phoneNumber}
                           onChange={(e) => setPhoneNumber(e.target.value.replace(/\D/g, '').slice(0, 9))}
                           required
@@ -125,7 +125,7 @@ export default function AuthModal({ isOpen, onClose, type, onSwitch, onSuccess }
                       <input 
                         type="password" 
                         placeholder="••••••••••••"
-                        className="w-full bg-black border border-zinc-800 px-12 py-3 text-white focus:outline-none focus:border-[#7CBB3D] placeholder:text-zinc-700 font-bold rounded-xl transition-all shadow-inner text-sm"
+                        className="w-full bg-black border border-brand-border px-12 py-3 text-white focus:outline-none focus:border-brand-primary placeholder:text-zinc-700 font-bold rounded-xl transition-all shadow-inner text-sm"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         required
@@ -141,7 +141,7 @@ export default function AuthModal({ isOpen, onClose, type, onSwitch, onSuccess }
                         <input 
                           type="password" 
                           placeholder="••••••••••••"
-                          className="w-full bg-black border border-zinc-800 px-12 py-3 text-white focus:outline-none focus:border-[#7CBB3D] placeholder:text-zinc-700 font-bold rounded-xl transition-all shadow-inner text-sm"
+                          className="w-full bg-black border border-brand-border px-12 py-3 text-white focus:outline-none focus:border-brand-primary placeholder:text-zinc-700 font-bold rounded-xl transition-all shadow-inner text-sm"
                           value={confirmPassword}
                           onChange={(e) => setConfirmPassword(e.target.value)}
                           required
@@ -164,7 +164,7 @@ export default function AuthModal({ isOpen, onClose, type, onSwitch, onSuccess }
                 <button 
                   type="submit"
                   disabled={isPending}
-                  className="group relative w-full bg-[#7CBB3D] hover:bg-[#8cd145] text-black font-black py-4 rounded-xl text-sm uppercase transition-all mt-4 disabled:opacity-50 overflow-hidden shadow-[0_0_20px_rgba(124,187,61,0.2)]"
+                  className="group relative w-full bg-brand-primary hover:brightness-105 text-black font-black py-4 rounded-xl text-sm uppercase transition-all mt-4 disabled:opacity-50 overflow-hidden shadow-[0_0_20px_rgba(189,233,30,0.2)]"
                 >
                   <span className="relative z-10 flex items-center justify-center gap-2">
                     {isPending ? 'PROCESSING...' : (type === 'login' ? 'SIGN IN' : 'CREATE ACCOUNT')}

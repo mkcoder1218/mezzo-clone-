@@ -257,14 +257,14 @@ export default function Sidebar({
     : effectiveSports;
 
   return (
-    <aside className={`w-64 border-r border-brand-border overflow-y-auto bg-[#0A0A0A] h-full ${className || ""}`}>
+    <aside className={`w-64 border-r border-brand-border overflow-y-auto bg-brand-dark h-full ${className || ""}`}>
       {isLoading ? (
         <SidebarSkeleton />
       ) : (
         <div className="min-h-full">
           {/* Top Leagues Section */}
-          <div className="bg-[#0A0A0A] border-b border-zinc-800/80">
-            <div className="px-4 py-3 text-[11px] font-bold uppercase tracking-wider flex items-center gap-2 bg-[#111111] border-b border-zinc-800/80 text-gray-400">
+          <div className="bg-brand-dark border-b border-brand-border">
+            <div className="px-4 py-3 text-[11px] font-bold uppercase tracking-wider flex items-center gap-2 bg-brand-panel border-b border-brand-border text-gray-400">
               <Trophy className="w-3.5 h-3.5 text-brand-primary" />
               Top Leagues
             </div>
@@ -281,7 +281,7 @@ export default function Sidebar({
                        sportId: isSelected ? null : (league.sportId || null)
                      });
                    }}
-                   className={`sidebar-item group !rounded-none !px-4 !py-2.5 border-b border-zinc-900 last:border-0 hover:bg-zinc-900/80 cursor-pointer ${activeLeague === league.name ? 'bg-brand-primary/10 text-brand-primary border-l-2 border-l-brand-primary' : ''}`}
+                   className={`sidebar-item group !rounded-none !px-4 !py-2.5 border-b border-brand-border last:border-0 hover:bg-brand-panel cursor-pointer ${activeLeague === league.name ? 'bg-brand-primary/10 text-brand-primary border-l-2 border-l-brand-primary' : ''}`}
                
                 >
                   <div className={`w-4 h-4 rounded-full bg-white/5 flex items-center justify-center flex-shrink-0 transition-colors border border-white/5 ${activeLeague === league.name ? 'bg-brand-primary/40 border-brand-primary' : 'group-hover:bg-brand-primary/20'}`}>
@@ -310,19 +310,19 @@ export default function Sidebar({
           </div>
 
           {/* Filter by Time Button */}
-          <div className="relative border-b border-zinc-800/80" ref={dropdownRef}>
+          <div className="relative border-b border-brand-border" ref={dropdownRef}>
             <div 
               onClick={() => setIsTimeDropdownOpen(!isTimeDropdownOpen)}
-              className="bg-brand-yellow text-black px-4 py-3 text-center font-bold text-[12px] cursor-pointer hover:brightness-105 active:brightness-95 transition-all uppercase tracking-tight flex items-center justify-center gap-2"
+              className="bg-brand-panel text-gray-300 px-4 py-3 text-center font-bold text-[12px] cursor-pointer hover:bg-brand-muted transition-all uppercase tracking-tight flex items-center justify-center gap-2"
             >
               <span>Filter by</span>
-              <span className="bg-[#3b82f6] text-white px-1 rounded-sm flex items-center gap-1">
+              <span className="bg-brand-primary text-black px-1.5 py-0.5 rounded-sm flex items-center gap-1">
                 Time
               </span>
             </div>
 
             {isTimeDropdownOpen && (
-              <div className="absolute top-full left-0 right-0 bg-[#111111] border-y border-zinc-800 shadow-2xl py-1.5 z-50 animate-in fade-in zoom-in-95 origin-top">
+              <div className="absolute top-full left-0 right-0 bg-brand-panel border-y border-brand-border shadow-2xl py-1.5 z-50 animate-in fade-in zoom-in-95 origin-top">
                 {['All Time', '1 Hour', '3 Hours', '6 Hours', '12 Hours', '24 Hours', '3 Days'].map((f) => (
                   <button
                     key={f}
@@ -341,7 +341,7 @@ export default function Sidebar({
           </div>
 
           {/* Sports Section */}
-          <div className="bg-[#0A0A0A]">
+          <div className="bg-brand-dark">
             <div className="flex flex-col">
               {sortedEffectiveSports.map((sport: any) => {
                 const isExpanded = expandedSports.includes(sport.id);
@@ -367,7 +367,7 @@ export default function Sidebar({
                                slug;
 
                 return (
-                  <div key={sport.id} className="flex flex-col border-b border-zinc-900 last:border-0">
+                  <div key={sport.id} className="flex flex-col border-b border-brand-border last:border-0">
                     <div 
                       onClick={() => {
                         toggleSport(sport.id);
@@ -376,7 +376,7 @@ export default function Sidebar({
                           onLeagueChange({ name: null, id: null, apiFootballLeagueId: null });
                         }
                       }}
-                      className={`sidebar-item group !rounded-none px-4 py-3 cursor-pointer hover:bg-zinc-900/80 ${isExpanded || activeSport === sport.id ? 'bg-zinc-900/70 text-white border-l-2 border-brand-primary' : ''}`}
+                      className={`sidebar-item group !rounded-none px-4 py-3 cursor-pointer hover:bg-brand-panel ${isExpanded || activeSport === sport.id ? 'bg-brand-panel text-white border-l-2 border-brand-primary' : ''}`}
                     >
                       <div className={`w-5 h-5 rounded-md bg-white/5 flex items-center justify-center flex-shrink-0 transition-colors border border-white/5 ${activeSport === sport.id ? 'bg-brand-primary/20 border-brand-primary' : 'group-hover:bg-brand-primary/10'}`}>
                         <span className="text-[13px] leading-none">{sportIcons[iconKey as any] || sportIcons[slug as any] || "\u26BD"}</span>
